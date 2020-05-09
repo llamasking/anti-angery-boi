@@ -34,15 +34,17 @@ client.on('message', message => {
   if (message.author.bot) return;
   if (message.guild === null) return;
 
+  const words = message.content.trim().toLowerCase().split(/ +/g);
+
   var angy = false;
   // Is angy?
   terms.angy.forEach(angyTerm => {
-    if (message.content.toLowerCase().includes(angyTerm)) angy = true;
+    if (words.includes(angyTerm)) angy = true;
   });
 
   // Is really angy?
   terms.notAngy.forEach(unAngyTerm => {
-    if (message.content.toLowerCase().includes(unAngyTerm)) angy = false;
+    if (words.includes(unAngyTerm)) angy = false;
   });
 
   // If definitely angy, make angy person happi.
