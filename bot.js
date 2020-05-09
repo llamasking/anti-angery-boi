@@ -13,6 +13,9 @@ const terms = require('./terms.json');
 // Overall hash of everything
 const botjshash = hashthis(fs.readFileSync('./bot.js'));
 
+// Get list of files in ./videos/
+const videos = fs.readdirSync('./videos', 'utf-8');
+
 // When bot is ready to recieve commands, log details about bot.
 client.on('ready', () => {
   console.log(`
@@ -44,7 +47,9 @@ client.on('message', message => {
 
   // If definitely angy, make angy person happi.
   if (angy) {
-    message.channel.send(terms.responses[Math.floor(Math.random() * terms.responses.length)] + '\nhttps://raw.githubusercontent.com/llamasking/anti-angery-boi/master/videos/no_angy.mp4');
+    var randomResponse = terms.responses[Math.floor(Math.random() * terms.responses.length)];
+    var randomVideo = `https://raw.githubusercontent.com/llamasking/anti-angery-boi/master/videos/${videos[Math.floor(Math.random() * videos.length)]}`;
+    message.channel.send(`${randomResponse}\n${randomVideo}`);
   }
 });
 
