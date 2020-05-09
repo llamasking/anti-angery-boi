@@ -34,12 +34,12 @@ client.on('message', message => {
   var angy = false;
   // Is angy?
   terms.angy.forEach(angyTerm => {
-    if (message.content.includes(angyTerm)) angy = true;
+    if (message.content.toLowerCase().includes(angyTerm)) angy = true;
   });
 
   // Is really angy?
   terms.notAngy.forEach(unAngyTerm => {
-    if (message.content.includes(unAngyTerm)) angy = false;
+    if (message.content.toLowerCase().includes(unAngyTerm)) angy = false;
   });
 
   // If definitely angy, make angy person happi.
