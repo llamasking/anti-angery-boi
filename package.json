@@ -1,14 +1,14 @@
 {
-    "name": "badbot-framework",
-    "description": "A basic framework for Discord bots.",
-    "version": "1.1.0",
+    "name": "anti-angy-bot",
+    "description": "A bot to prevent anginess on Discord.",
+    "version": "1.0",
     "author": {
         "name": "llamasking",
-        "url": "https://github.com/llamasking"
+        "url": "https://github.com/llamasking/anti-angery-boi"
     },
     "license": "GPL-3.0",
-    "homepage": "https://github.com/llamasking/badbot-framework",
-    "repository": "github:llamasking/badbot-framework",
+    "homepage": "https://github.com/llamasking/anti-angery-boi",
+    "repository": "github:llamasking/anti-angery-boi",
     "main": "bot.js",
     "dependencies": {
         "bufferutil": "^4.0.1",
