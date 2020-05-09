@@ -9,6 +9,7 @@ const hashthis = require('./framework/hashthis.js');
 // Load configs.
 const config = require('./config.json');
 const activated = require('./activated.json');
+const terms = require('./terms.json');
 
 // List detected modules at bot startup
 var modhashes = [];
@@ -36,10 +37,28 @@ client.on('ready', () => {
 client.on('guildCreate', (guild) => console.log(`Joined new server: ${guild.name} with ${guild.memberCount - 1} members.`));
 client.on('guildDelete', (guild) => console.log(`Left server: ${guild.name} with ${guild.memberCount  - 1} members.`));
 
-client.on('message', async (message) => {
+client.on('message', message => {
   // Filter out bots and group chats/dms.
   if (message.author.bot) return;
   if (message.guild === null) return;
+
+  var angy = false;
+  // Is angy?
+  terms.angy.forEach(angyTerm => {
+    if (message.content.includes(angyTerm)) angy = true;
+  });
+
+  // Is really angy?
+  terms.notAngy.forEach(unAngyTerm => {
+    if (message.content.includes(unAngyTerm)) angy = false;
+  });
+
+  // If definitely angy, make angy person happi.
+  if (angy) {
+    message.channel.send(terms.responses[Math.floor(Math.random() * terms.responses.length) + '\nhttps://raw.githubusercontent.com/llamasking/anti-angery-boi/master/videos/no_angy.mp4']);
+  }
+
+  /* I don't think we'll be using any commands.
 
   // @Bot *help* and @Bot *commands*
   if (message.mentions.has(client.user) && message.content.includes('help' || 'commands')) {
@@ -92,6 +111,7 @@ client.on('message', async (message) => {
       require(`./modules/${cmd}.js`)(message, args);
     }
   }
+  */
 });
 
 client.login(config.token);
