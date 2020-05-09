@@ -1,0 +1,23 @@
+{
+    "name": "badbot-framework",
+    "description": "A basic framework for Discord bots.",
+    "version": "1.1.0",
+    "author": {
+        "name": "llamasking",
+        "url": "https://github.com/llamasking"
+    },
+    "license": "GPL-3.0",
+    "homepage": "https://github.com/llamasking/badbot-framework",
+    "repository": "github:llamasking/badbot-framework",
+    "main": "bot.js",
+    "dependencies": {
+        "bufferutil": "^4.0.1",
+        "discord.js": "^12.0.2",
+        "erlpack": "github:discordapp/erlpack",
+        "utf-8-validate": "^5.0.2",
+        "zlib-sync": "^0.1.6"
+    },
+    "devDependencies": {
+        "eslint": "^6.6.0"
+    }
+}
