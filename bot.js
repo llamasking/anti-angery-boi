@@ -44,7 +44,7 @@ client.on('message', message => {
 
   // If definitely angy, make angy person happi.
   if (angy) {
-    message.channel.send(terms.responses[Math.floor(Math.random() * terms.responses.length) + '\nhttps://raw.githubusercontent.com/llamasking/anti-angery-boi/master/videos/no_angy.mp4']);
+    message.channel.send(terms.responses[Math.floor(Math.random() * terms.responses.length)] + '\nhttps://raw.githubusercontent.com/llamasking/anti-angery-boi/master/videos/no_angy.mp4');
   }
 });
 
