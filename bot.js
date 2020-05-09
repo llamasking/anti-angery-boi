@@ -34,7 +34,7 @@ client.on('message', message => {
   if (message.author.bot) return;
   if (message.guild === null) return;
 
-  const words = message.content.trim().toLowerCase().split(/ +/g);
+  const words = message.content.trim().toLowerCase().match(/a-z/g).split(/ +/g);
 
   var angy = false;
   // Is angy?
