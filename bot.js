@@ -50,7 +50,7 @@ client.on('message', message => {
   // If definitely angy, make angy person happi.
   if (angy) {
     var randomResponse = terms.responses[Math.floor(Math.random() * terms.responses.length)];
-    var randomVideo = `https://raw.githubusercontent.com/llamasking/anti-angery-boi/master/videos/${videos[Math.floor(Math.random() * videos.length)]}`;
+    var randomVideo = `https://llamasking.xyz/anti-angery-boi/videos/${videos[Math.floor(Math.random() * videos.length)]}`;
     message.channel.send(`${randomResponse}\n${randomVideo}`);
   }
 });
