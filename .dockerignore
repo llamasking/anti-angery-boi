@@ -62,3 +62,10 @@ typings/
 
 # Visual Studio Code
 .vscode/
+
+# Git
+.git
+.github
+
+# Markdown
+*.md

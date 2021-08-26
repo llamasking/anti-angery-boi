@@ -1,13 +1,13 @@
 // Load and prep Discord and client.
-const Discord = require('discord.js');
-const client = new Discord.Client();
+const { Client, Intents } = require('discord.js');
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
 // Load FS and framework module(s)
 const fs = require('fs');
 const hashthis = require('./framework/hashthis.js');
 
 // Load configs.
-const config = require('./config.json');
+require('dotenv').config();
 const terms = require('./terms.json');
 
 // Overall hash of everything
@@ -23,20 +23,29 @@ client.on('ready', () => {
     Bot.js hash: ${botjshash}
     Time: ${new Date()}\n`);
 
-  client.user.setPresence(config.presence);
+  client.user.setPresence({
+    activities: [{
+      name: process.env.ACTIVITY_NAME,
+      type: process.env.ACTIVITY_TYPE,
+    }]
+  });
 });
 
-client.on('guildCreate', (guild) => console.log(`Joined new server: ${guild.name} with ${guild.memberCount - 1} members.`));
-client.on('guildDelete', (guild) => console.log(`Left server: ${guild.name} with ${guild.memberCount  - 1} members.`));
-
-client.on('message', message => {
+client.on('messageCreate', async (message) => {
   // Filter out bots and group chats/dms.
   if (message.author.bot) return;
   if (message.guild === null) return;
 
-  const words = message.content.trim().toLowerCase().replace(/[^a-z ]/g, '').split(/ +/g);
+  // Very big and spooky series of transformations.
+  // Breaks the message into an array of all lowercase strings of exclusively ascii characters.
+  const words = message.content.
+    trim().
+    toLowerCase().
+    replace(/[^a-z ]/g, '').
+    replace(/  +/g, ' ').
+    split(/ +/g);
 
-  var angy = false;
+  let angy = false;
   // Is angy?
   terms.angy.forEach(angyTerm => {
     if (words.includes(angyTerm)) angy = true;
@@ -55,4 +64,4 @@ client.on('message', message => {
   }
 });
 
-client.login(config.token);
+client.login(process.env.TOKEN);
